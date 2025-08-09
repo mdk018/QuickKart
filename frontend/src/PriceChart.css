@@ -1,0 +1,21 @@
+/* PriceChart.css */
+
+.price-chart-container {
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+  }
+  
+  .price-chart-container h3 {
+    color: #007bff;
+    margin-bottom: 0.75rem;
+    text-align: center;
+  }
+  
+  .error-text {
+    color: #b00020;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  

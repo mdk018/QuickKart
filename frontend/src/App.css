@@ -1,0 +1,27 @@
+/* App.css */
+
+.app-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem 1.5rem;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.app-title {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 1.5rem;
+}
+
+.error-text {
+  color: #b00020;
+  margin-top: 0.5rem;
+}
+
+.success-text {
+  color: #2e7d32;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
