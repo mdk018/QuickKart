@@ -36,7 +36,7 @@ QuickKart is a full-stack web application that allows users to track prices of p
 
 1. **Clone the repository**
 ```
-git clone https://github.com/yourusername/quickkart.git
+git clone https://github.com/mdk018/quickkart.git
 cd quickkart
 ```
 
