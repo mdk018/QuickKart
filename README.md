@@ -17,11 +17,11 @@ QuickKart is a full-stack web application that allows users to track prices of p
 ---
 
 ## Technologies Used
-```
+
 - **Backend:** Node.js, Express.js, MongoDB Atlas, Puppeteer, Nodemailer, node-cron
 - **Frontend:** React.js, Axios, Chart.js (or similar library for charts)
 - **Other:** CSS Modules for styling, REST API architecture
-```
+
 ---
 
 ## Getting Started
