@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 function startCronJob() {
-  cron.schedule('*/3 * * * *', async () => {
+  cron.schedule('*/15 * * * *', async () => {
     try {
       const products = await Product.find();
       for (const product of products) {
@@ -44,6 +44,7 @@ function startCronJob() {
           .skip(1);
 
         const previousPrice = previousPriceEntry ? previousPriceEntry.price : null;
+        console.log(`Checking product ${product.title}: current price = ${price}, target price = ${product.targetPrice}, previous price = ${previousPrice}`);
 
         if (price < product.targetPrice && (previousPrice === null || price < previousPrice)) {
           await transporter.sendMail({
@@ -55,8 +56,8 @@ function startCronJob() {
           console.log(`Email alert sent for ${product.title} to ${product.userEmail}`);
         }
       }
-    } catch (error) {
-      console.error('Error in cron job:', error);
+    } catch (emailErr) {
+      console.error(`Failed to send email for ${product.title} to ${product.userEmail}`, emailErr);
     }
   });
 }
