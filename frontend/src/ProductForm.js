@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './ProductForm.css';
+const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
 function ProductForm({ onAdded }) {
   const [form, setForm] = useState({
@@ -47,7 +48,7 @@ function ProductForm({ onAdded }) {
     setMessage(null);
 
     try {
-      const res = await axios.post('http://localhost:5000/api/products', {
+      const res = await axios.post(`${BASE_URL}/api/products`, {
         ...form,
         targetPrice: Number(form.targetPrice),
       });
