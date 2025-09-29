@@ -4,6 +4,7 @@ import ProductForm from './ProductForm';
 import ProductList from './ProductList';
 import PriceChart from './PriceChart';
 import './App.css';
+const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -16,7 +17,9 @@ function App() {
       setLoadingProducts(true);
       setError('');
       try {
-        const res = await axios.get('http://localhost:5000/api/products');
+        //const res = await axios.get('http://localhost:5000/api/products');
+        const res = await axios.get(`${BASE_URL}/api/products`);
+
         setProducts(res.data);
       } catch (err) {
         setError('Failed to load products.');
@@ -38,7 +41,9 @@ function App() {
   
     try {
       // Make DELETE request to backend
-      await axios.delete(`http://localhost:5000/api/products/${productId}`);
+      //await axios.delete(`http://localhost:5000/api/products/${productId}`);
+      await axios.delete(`${BASE_URL}/api/products/${productId}`);
+
   
       // Update the state to remove the deleted product locally
       setProducts((prevProducts) => prevProducts.filter(product => product._id !== productId));
