@@ -2,7 +2,6 @@ const puppeteer = require('puppeteer');
 
 async function scrapePrice(url, platform) {
   const browser = await puppeteer.launch({
-    executablePath: process.env.CHROME_EXECUTABLE_PATH || '/usr/bin/chromium-browser',
     args: ['--no-sandbox', '--disable-setuid-sandbox'],
     headless: true,
   });
