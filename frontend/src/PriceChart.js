@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import './PriceChart.css';
+const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
 function PriceChart({ productId }) {
   const [priceHistory, setPriceHistory] = useState([]);
@@ -23,7 +24,7 @@ function PriceChart({ productId }) {
       setLoading(true);
       setError('');
       try {
-        const res = await axios.get(`http://localhost:5000/api/prices/${productId}`);
+        const res = await axios.get(`${BASE_URL}/api/prices/${productId}`);
         // Map data to chart-friendly format, oldest first
         const formatted = res.data
           .map((entry) => ({
