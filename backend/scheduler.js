@@ -1,10 +1,8 @@
 const cron = require('node-cron');
-const mongoose = require('mongoose');
 const Product = require('./models/Product');
 const Price = require('./models/Price');
 const scrapePrice = require('./scraper/scraper');
 const nodemailer = require('nodemailer');
-require('dotenv').config();
 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
@@ -14,22 +12,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-mongoose.set('strictQuery', true);
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => {
-  console.log('MongoDB connected successfully.');
-  startCronJob();
-})
-.catch((err) => {
-  console.error('MongoDB connection error:', err);
-  process.exit(1);
-});
-
 function startCronJob() {
-  cron.schedule('*/15 * * * *', async () => {
+  cron.schedule('*/4 * * * *', async () => {
     try {
       const products = await Product.find();
       for (const product of products) {
@@ -56,8 +40,10 @@ function startCronJob() {
           console.log(`Email alert sent for ${product.title} to ${product.userEmail}`);
         }
       }
-    } catch (emailErr) {
-      console.error(`Failed to send email for ${product.title} to ${product.userEmail}`, emailErr);
+    } catch (error) {
+      console.error('Error running cron job:', error);
     }
   });
 }
+
+module.exports = { startCronJob };
